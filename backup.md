@@ -6,4 +6,5 @@
 
 ### rsync
 
-    rsync -rav --delete-after --exclude=.DS_Store --exclude=*.pyc -t -e ssh --rsync-path=/usr/bin/rsync --temp-dir=/tmp <source> <destination>
+    rsync -rav --delete-after --exclude=.DS_Store --exclude=._ -t -e ssh --rsync-path=/usr/bin/rsync \
+    --temp-dir=/tmp <source> <destination>
