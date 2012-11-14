@@ -22,3 +22,12 @@ which makes my images unusably small. So I generally create svg files:
 PS> If you are using Ubuntu, make sure to install graphviz (which provides the dot program):
 
     sudo apt-get install graphviz
+
+### upload file by ftp
+
+	import ftplib
+	ftp = ftplib.FTP(HOST)
+	ftp.login(USER, PASS)
+	ftp.cwd(PATH)
+	ftp.storbinary('STOR ' + os.path.basename(fn), open(fn, 'rb'), 1024)
+	ftp.quit()
