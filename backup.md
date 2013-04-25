@@ -13,3 +13,9 @@
 
     curl -T ./*.ass ftp://host/media/video/ --user user:pass
 
+### VBox
+
+    VBoxManage export <VM name> -o ~/exp.ova
+    VBoxManage import ~/exp.ovf 
+
+

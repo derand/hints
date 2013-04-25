@@ -1,7 +1,7 @@
 
 ### show database schema
 
-    $ mysqldump --no-data --skip-opt --skip-comments --compact "databasename"
+    $ mysqldump --no-data --skip-comments --compact "databasename"
 
 or
 
