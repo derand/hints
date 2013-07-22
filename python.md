@@ -23,7 +23,7 @@ PS> If you are using Ubuntu, make sure to install graphviz (which provides the d
 
     sudo apt-get install graphviz
 
-### upload file by ftp
+### upload file over ftp
 
 	import ftplib
 	ftp = ftplib.FTP(HOST)
