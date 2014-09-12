@@ -23,6 +23,19 @@ PS> If you are using Ubuntu, make sure to install graphviz (which provides the d
 
     sudo apt-get install graphviz
 
+
+## Virtualenv
+
+### create python virtualenv
+
+    virtualenv venv
+
+### activate virtual
+
+    source venv/bin/activate
+
+## Other
+
 ### upload file over ftp
 
 	import ftplib
