@@ -8,3 +8,9 @@
 
     open -a Google\ Chrome --args --allow-file-access-from-files --disable-web-security
 
+### In an "Open File" dialog you can use Command-Shift-. to see dot files.
+
+### Go to sleep
+
+    pmset sleepnow
+
