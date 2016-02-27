@@ -15,3 +15,10 @@
 
     ntpdate -q pool.ntp.org
 
+### Show current connections
+
+    lsof -i | grep -E "(ESTABLISHED|LISTEN)"
+
+autoupldate
+
+    watch -n 5 "lsof -i | grep -E '(ESTABLISHED|LISTEN)'"
