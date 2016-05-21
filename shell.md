@@ -19,7 +19,7 @@
 
     lsof -i | grep -E "(ESTABLISHED|LISTEN)"
 
-### Auto-update
+### Run and auto-rerun command
 
     watch -n 5 "lsof -i | grep -E '(ESTABLISHED|LISTEN)'"
 
@@ -27,3 +27,13 @@
 
     sips -Z 1024 *.jpg
 
+
+## Apt
+
+### List packege versions on server enabled to download
+
+    apt-cache madison python3
+
+### Install specified version of packege
+
+    apt-get install python3=3.4.2-2
