@@ -11,6 +11,7 @@
 ### Remove all unused images
 
     docker images -a -q |xargs docker rmi
+    docker rmi $(docker images -q -f dangling=true)
 
 ### Save exist container to image
 
@@ -22,3 +23,6 @@
 
     docker load -i <path to image tar file> 
 
+### Run screen into running container
+
+    docker exec -i -t tf_tcore sh -c "exec >/dev/tty 2>/dev/tty </dev/tty && export TERM=vt100 && /usr/bin/screen -s /bin/bash"

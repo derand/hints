@@ -19,10 +19,11 @@
 
     lsof -i | grep -E "(ESTABLISHED|LISTEN)"
 
-autoupldate
+### Auto-update
 
     watch -n 5 "lsof -i | grep -E '(ESTABLISHED|LISTEN)'"
 
 ### Resize image(s)
 
     sips -Z 1024 *.jpg
+
