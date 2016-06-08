@@ -33,6 +33,10 @@
 
     sips -Z 1024 *.jpg
 
+### SSH over http-proxy
+
+    ssh user@final_dest -o "ProxyCommand=nc -X connect -x proxyhost:proxyport %h %p"
+
 
 ## Apt
 
