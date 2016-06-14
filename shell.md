@@ -37,6 +37,11 @@
 
     ssh user@final_dest -o "ProxyCommand=nc -X connect -x proxyhost:proxyport %h %p"
 
+### Purge memory (linux, os x)
+
+    sudo sh -c "free -h && sync && echo 3 > /proc/sys/vm/drop_caches && free -h"
+    sudo purge
+
 
 ## Apt
 
