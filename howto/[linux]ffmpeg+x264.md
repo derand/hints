@@ -1,11 +1,11 @@
-*** Instalation ffmpeg with x264, lame, vpx from sources on Ubuntu Linux
+### Instalation ffmpeg with x264, lame, vpx from sources on Ubuntu Linux
 
-***** Install supported packeges
+##### Install supported environment
 
     $ sudo apt-get remove libmp3lame-dev ffmpeg
     $ sudo apt-get -y install quilt libsdl1.2-dev libogg-dev libvorbis-dev liba52-dev libdts-dev libimlib2-dev texi2html libraw1394-dev libdc1394-22-dev libtheora-dev libgsm1-dev libxvidcore-dev libfaac-dev libfaad-dev build-essential git-core checkinstall yasm texi2html libopencore-amrnb-dev libopencore-amrwb-dev libtheora-dev libvorbis-dev libx11-dev libxfixes-dev zlib1g-dev nasm autoconf mercurial libass-dev python-chardet
 
-***** Yasm
+##### Yasm
 
     $ mkdir src && cd ~/src 
     $ wget http://www.tortall.net/projects/yasm/releases/yasm-1.2.0.tar.gz
@@ -15,7 +15,7 @@
     $ make -j3
     $ sudo checkinstall --pkgname=yasm --pkgversion="1.2.0" --backup=no --deldoc=yes --fstrans=no --default
 
-***** x264
+##### x264
 
     $ cd ~/src
     $ git clone git://git.videolan.org/x264
@@ -26,7 +26,7 @@
     $ sudo make install-lib-dev
     $ sudo cp libx264.a /usr/local/lib/
 
-***** liblame
+##### liblame
 
     $ cd ~/src
     $ sudo mkdir -p /usr/local/share/doc/lame
@@ -37,7 +37,7 @@
     $ make -j3
     $ sudo checkinstall --pkgname=lame-ffmpeg --pkgversion="3.99.5" --backup=no --default --deldoc=yes
 
-***** libvpx
+##### libvpx
 
     $ cd ~/src
     $ git clone https://github.com/webmproject/libvpx.git
@@ -46,7 +46,7 @@
     $ make -j3
     $ sudo checkinstall --pkgname=libvpx --pkgversion="$(date +%Y%m%d%H%M)-git" --backup=no --default --deldoc=yes
 
-***** ffmpeg
+##### ffmpeg
 
     $ cd ~/src
     $ git clone git://source.ffmpeg.org/ffmpeg
