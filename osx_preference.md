@@ -1,8 +1,8 @@
-###Enable AirDrop
+### Enable AirDrop
 
     defaults write com.apple.NetworkBrowser BrowseAllInterfaces 1
 
-###Open Yandex.Browser with disabled web security
+### Open Yandex.Browser with disabled web security
 
     open -n -a Yandex --args --disable-web-security
 
@@ -13,4 +13,8 @@
 ### Go to sleep
 
     pmset sleepnow
+
+### Purge memory
+
+    sudo purge
 
