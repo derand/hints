@@ -42,6 +42,10 @@
     sudo sh -c "free -h && sync && echo 3 > /proc/sys/vm/drop_caches && free -h"
     sudo purge
 
+### Remove EXIF from image
+
+    convert <input file> -strip <output file>
+
 
 ## Apt
 
