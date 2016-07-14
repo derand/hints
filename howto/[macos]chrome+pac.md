@@ -4,7 +4,7 @@ On Mac, Chrome uses the proxy settings listed under the Network Control Panel. T
 
 ##### Show current proxy settings on Chrome
 
-    [chrome://net-internals/#proxy](chrome://net-internals/#proxy)
+[chrome://net-internals/#proxy](chrome://net-internals/#proxy)
 
 ##### Command line arguments to change proxy settings
 
