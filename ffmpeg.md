@@ -1,30 +1,52 @@
-## Video
+### Video
 
-### Fade out to video and audio example (for video time use frames, for audio — seconds)
+Fade out to video and audio example (for video time use frames, for audio — seconds)
 
     ffmpeg -i <inputfile> -filter:v 'fade=out:7582:60' -c:v libx264 -crf 21 -preset veryfast -af 'afade=t=out:st=253:d=2' <outputfile>.mp4
 
-### Blur filter
+Blur filter
 
     ffmpeg -i <inputfile> -vcodec libx264 -crf 18 -refs 4 -threads 2 -partitions +parti4x4+parti8x8+partp4x4+partp8x8+partb8x8 -subq 12 -trellis 1 -coder 1 -me_range 32 -level 4.1 -profile:v high -bf 12 -vf boxblur=2:2 <outputfile>.mp4
 
+Crop video
 
-## Audio
+    ffmpeg -i <inputfile>.mp4 -filter:v "crop=out_w:out_h:x:y" -c:a copy <outputfile>.mp4
 
-### Get audio DC offset and apply
+Create animated-gif from video (1. generate palette, 2. generate gif using the palette, source: [1](http://superuser.com/questions/556029/how-do-i-convert-a-video-to-gif-using-ffmpeg-with-reasonable-quality), [2](http://blog.pkh.me/p/21-high-quality-gif-with-ffmpeg.html))
+
+    ffmpeg -y -ss 30 -t 3 -i <inputfile>.flv -vf fps=10,scale=320:-1:flags=lanczos,palettegen palette.png
+    ffmpeg -ss 30 -t 3 -i <inputfile>.flv -i palette.png -filter_complex "fps=10,scale=320:-1:flags=lanczos[x];[x][1:v]paletteuse" <outputfile>.gif
+
+or using convert with frames
+
+    ffmpeg -i <inputfile> -vf scale=320:-1:flags=lanczos,fps=10 frames/ffout%03d.png
+    convert -loop 0 frames/ffout*.png <outputfile>.gif
+
+Convert to webm
+
+    ffmpeg -i <inputfile>.mp4 -c:v libvpx -crf 10 -b:v 1M -c:a libvorbis <outputfile>.webm
+    
+
+### Audio
+
+Get audio DC offset and apply
 
     ffmpeg -y -i ./2016_06_01.m4a -af astats -f null -
     ffmpeg -y -i ./2016_06_01.m4a -filter_complex "dcshift=shift=0.139284" ./tmp.wav
 
-### Change audio volume
+Change audio volume
 
     ffmpeg -i <inputfile> -vcodec copy -af "volume=-5dB" <outputfile>
 
-### Add offset to audio
+Add offset to audio
 
     ffmpeg -i <inputfile>.aac -itsoffset -0.7 -i <inputfile>.mp4 -y -c:v copy -c:a copy -bsf:a aac_adtstoasc -strict experimental <outputfile>.mp4
 
-### Convert audio to mp3 with constant and variable bitrate
+Convert audio to mp3 with constant and variable bitrate
 
     ffmpeg -i <inputfile>.m4a -c:a libmp3lame -ac 2 -b:a 320k <outputfile>.mp3
     ffmpeg -i <inputfile>.m4a -c:a libmp3lame -ac 2 -q:a 2 <outputfile>.mp3
+
+Mix two audio files
+
+    ffmpeg -y -i  <inputfile>.wav -i <inputfile>.wav -filter_complex amix=duration=longest -c:a libmp3lame -q:a 4 <outputfile>.mp3
