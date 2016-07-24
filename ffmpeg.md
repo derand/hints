@@ -22,6 +22,8 @@ or using convert with frames
     ffmpeg -i <inputfile> -vf scale=320:-1:flags=lanczos,fps=10 frames/ffout%03d.png
     convert -loop 0 frames/ffout*.png <outputfile>.gif
 
+    for i in {<num_frames-1>..1}; do tmp="$(printf "%03d" $i)"; tmp2="$(printf "%03d" $((<2*num_frames>-$i)))"; cp frames/ffout$tmp.png frames/ffout$tmp2.png; done
+
 Convert to webm
 
     ffmpeg -i <inputfile>.mp4 -c:v libvpx -crf 10 -b:v 1M -c:a libvorbis <outputfile>.webm
