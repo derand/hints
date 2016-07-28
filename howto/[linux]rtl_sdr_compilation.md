@@ -6,7 +6,7 @@
     $ mkdir build  && cd build
     $ cmake ..
     $ make
-    $ checkinstall --pkgname=rtl-sdr --pkgversion="3.5.19" --backup=no --default --deldoc=yes
+    $ checkinstall --pkgname=rtl-sdr --pkgversion="0.5.3.1" --backup=no --default --deldoc=yes
     $ sudo ldconfig
 
 [Github](https://github.com/osmocom/rtl-sdr) repository mirror.
