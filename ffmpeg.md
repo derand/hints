@@ -46,18 +46,20 @@ for i in {000..010}; do ffmpeg -y -i file$i.mp4 -vcodec libx264 -crf 22 -refs 6 
 
 * Rejoin the encoded parts
 
-  Create a "textfile" and put in the name of each rendered file like this
+  Create a "*textfile*" and put in the name of each rendered file like this
 
   ```
-  file 'out_000.mp4'
-  file 'out_001.mp4'
-  .... 
-  file 'out_xxx.mp4'
+file 'out_000.mp4'
+file 'out_001.mp4'
+.... 
+file 'out_xxx.mp4'
   ```
 
   and run
 
-    ffmpeg -f concat -i textfile -c copy -fflags +genpts <outputfile>.mp4
+  ```
+  ffmpeg -f concat -i textfile -c copy -fflags +genpts <outputfile>.mp4
+  ```
 
 
 # Audio
