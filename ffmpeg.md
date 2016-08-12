@@ -31,7 +31,34 @@ or using convert with frames
 Convert to webm
 
     ffmpeg -i <inputfile>.mp4 -c:v libvpx -crf 10 -b:v 1M -c:a libvorbis <outputfile>.webm
-    
+
+#####Segmented encoding 
+
+1. Break the fullfile into parts (10 min)
+
+    ffmpeg -i <inputfile>.mp4 -c copy -flags +global_header -segment_time 600 -f segment file%03d.mp4
+
+2. Encoding
+
+'''bash
+for i in {000..010}; do ffmpeg -y -i file$i.mp4 -vcodec libx264 -crf 22 -refs 6 -threads 1 -partitions +parti4x4+parti8x8+partp4x4+partp8x8+partb8x8 -subq 12 -trellis 1 -coder 1 -me_range 32 -level 4.1 -profile:v high -bf 12 -r 30 -vf scale=1280:720 -acodec libfaac -ac 2 -ab 160k -ar 48000 -strict experimental out_$i.mp4; done
+'''
+
+3. Rejoin the encoded parts
+
+Create a "textfile" and put in the name of each rendered file like this
+
+'''
+file 'out_000.mp4'
+file 'out_001.mp4'
+.... 
+file 'out_xxx.mp4'
+'''
+
+and run
+
+    ffmpeg -f concat -i textfile -c copy -fflags +genpts <outputfile>.mp4
+
 
 ### Audio
 
