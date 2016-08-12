@@ -1,5 +1,9 @@
 ### Video
 
+Cut a video without re-encoding
+
+    ffmpeg -i <inputfile> -ss 00:00:00.0 -t 00:00:01.5 -c copy <outputfile>
+
 Fade out to video and audio example (for video time use frames, for audio — seconds)
 
     ffmpeg -i <inputfile> -filter:v 'fade=out:7582:60' -c:v libx264 -crf 21 -preset veryfast -af 'afade=t=out:st=253:d=2' <outputfile>.mp4
