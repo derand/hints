@@ -32,7 +32,7 @@ Convert to webm
 
     ffmpeg -i <inputfile>.mp4 -c:v libvpx -crf 10 -b:v 1M -c:a libvorbis <outputfile>.webm
 
-### Segmented encoding 
+### Segmented encoding (source: [stackexchange.com](http://video.stackexchange.com/a/17062))
 
 * Break the fullfile into parts (10 min)
 
