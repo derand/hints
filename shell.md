@@ -46,6 +46,10 @@
 
     convert <input file> -strip <output file>
 
+### Randomly play files from directory (OS X)
+
+    while :; do fn=`find ~/dump/music/ -name *.mp3 | python -c "import sys; import random; print(random.choice(sys.stdin.readlines()).rstrip())"`; echo $fn; afplay -v 0.35 "$fn"; done
+
 
 ## Apt
 
