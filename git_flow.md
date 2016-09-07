@@ -2,6 +2,10 @@
 
     brew install git-flow
 
+After install you can start using git-flow
+
+    git flow init
+
 ### Branches lifecycle
 
     git flow [feature | release | hotfix | support] start <name>
