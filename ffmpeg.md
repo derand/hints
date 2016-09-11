@@ -16,6 +16,10 @@ Crop video
 
     ffmpeg -i <inputfile>.mp4 -filter:v "crop=out_w:out_h:x:y" -c:a copy <outputfile>.mp4
 
+Scale video
+
+    ffmpeg -i <inputfile>.mp4 -filter:v "scale=width:height" -c:a copy <outputfile>.mp4
+
 Create animated-gif from video (1. generate palette, 2. generate gif using the palette, source: [1](http://superuser.com/questions/556029/how-do-i-convert-a-video-to-gif-using-ffmpeg-with-reasonable-quality), [2](http://blog.pkh.me/p/21-high-quality-gif-with-ffmpeg.html))
 
     ffmpeg -y -ss 30 -t 3 -i <inputfile>.flv -vf fps=10,scale=320:-1:flags=lanczos,palettegen palette.png
