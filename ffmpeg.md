@@ -20,6 +20,12 @@ Scale video
 
     ffmpeg -i <inputfile>.mp4 -filter:v "scale=width:height" -c:a copy <outputfile>.mp4
 
+Delete black lines and create blured background for vertical video
+
+    ffmpeg -y -i <inputfile>.mp4 -filter:v "crop=608:1080:417:0" -c:a copy tmp.mp4
+    ffmpeg -y -i tmp.mp4 -filter:v "scale=1920:3410,crop=1920:1080:0:1165,boxblur=12:12" -c:v libx264 -crf 21 -refs 4 -c:a copy background.mp4
+    ffmpeg -y -i background.mp4 -vcodec libx264 -crf 18 -refs 4 -partitions +parti4x4+parti8x8+partp4x4+partp8x8+partb8x8 -subq 12 -trellis 1 -coder 1 -me_range 32 -level 4.1 -profile:v high -bf 12 -vf "movie=tmp.mp4[inner]; [in][inner] overlay=656:0 [out]" -c:a copy <outputfile>.mp4
+
 Create animated-gif from video (1. generate palette, 2. generate gif using the palette, source: [1](http://superuser.com/questions/556029/how-do-i-convert-a-video-to-gif-using-ffmpeg-with-reasonable-quality), [2](http://blog.pkh.me/p/21-high-quality-gif-with-ffmpeg.html))
 
     ffmpeg -y -ss 30 -t 3 -i <inputfile>.flv -vf fps=10,scale=320:-1:flags=lanczos,palettegen palette.png
