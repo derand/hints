@@ -42,6 +42,24 @@ Convert to webm
 
     ffmpeg -i <inputfile>.mp4 -c:v libvpx -crf 10 -b:v 1M -c:a libvorbis <outputfile>.webm
 
+###Speed up / slow down a video (audio)
+
+To double the speed of the video and change FPS
+
+    ffmpeg -i <inputfile> -r 30 -filter:v "setpts=0.5*PTS" <outputfile>
+
+To slow down your video, you have to use a multiplier greater than 1
+
+    ffmpeg -i <inputfile> -r 30 -filter:v "setpts=2*PTS" <outputfile>
+
+To double the speed of audio
+
+    ffmpeg -i <inputfile> -filter:a "atempo=2.0" -vn <outputfile>
+
+Using a complex filtergraph, you can speed up video and audio at the same time
+
+    ffmpeg -i <inputfile> -filter_complex "[0:v]setpts=0.5*PTS[v];[0:a]atempo=2.0[a]" -map "[v]" -map "[a]" <outputfile>
+
 ### Segmented encoding
 
 * Break the fullfile into parts (10 min)
