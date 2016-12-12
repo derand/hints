@@ -60,11 +60,15 @@ Using a complex filtergraph, you can speed up video and audio at the same time
 
     ffmpeg -i <inputfile> -filter_complex "[0:v]setpts=0.5*PTS[v];[0:a]atempo=2.0[a]" -map "[v]" -map "[a]" <outputfile>
 
+Rotate video (-2.2 degrees)
+
+    ffmpeg -y -i <inputfile> -vf "rotate=-2.2*2*PI/360" -c:a copy <outputfile>
+
 ### Segmented encoding
 
 * Break the fullfile into parts (10 min)
 
-    ffmpeg -i <inputfile>.mp4 -c copy -flags +global_header -segment_time 600 -f segment file%03d.mp4
+    ffmpeg -i <inputfile>.mp4 -c copy -map 0 -flags +global_header -segment_time 600 -f segment file%03d.mp4
 
 * Encoding
 
