@@ -64,6 +64,10 @@ Rotate video (-2.2 degrees)
 
     ffmpeg -y -i <inputfile> -vf "rotate=-2.2*2*PI/360" -c:a copy <outputfile>
 
+Make screenshot from video
+
+    ffmpeg -ss hh:mm:ss -i <inputfile> -vframes 1 -q:v 2 <outputfile>.[png,jgp]
+
 ### Segmented encoding
 
 * Break the fullfile into parts (10 min)
