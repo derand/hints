@@ -125,6 +125,6 @@ Mix two audio files
     ffmpeg -y -i  <inputfile>.wav -i <inputfile>.wav -filter_complex amix=duration=longest -c:a libmp3lame -q:a 4 <outputfile>.mp3
 
 Audio visualisation in video ([source](https://trac.ffmpeg.org/wiki/Encode/YouTube#Usingfilters))
-![example](images/fmpeg_vsw.jpg "Usage example avectorscope, showspectrum and showwaves filters")
+![example](images/ffmpeg_vsw.jpg?raw=true "Usage example avectorscope, showspectrum and showwaves filters")
 
     ffmpeg -y -i <inputfile>.mp3 -filter_complex "[0:a]avectorscope=s=640x518,pad=1280:720[vs]; [0:a]showspectrum=mode=separate:color=intensity:scale=cbrt:slide=scroll:s=640x518[ss]; [0:a]showwaves=s=1280x202:mode=line[sw]; [vs][ss]overlay=w[bg]; [bg][sw]overlay=0:H-h,drawtext=fontfile=/root/.fonts/Verdana.ttf:fontcolor=white:x=10:y=10:text='\"Song name\" by artist'[out]" -map "[out]" -map 0:a -c:v libx264 -preset fast -crf 18 -c:a copy <outputfile>.mkv
