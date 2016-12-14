@@ -128,3 +128,8 @@ Audio visualisation in video ([source](https://trac.ffmpeg.org/wiki/Encode/YouTu
 ![example](images/ffmpeg_vsw.jpg?raw=true "Usage example avectorscope, showspectrum and showwaves filters")
 
     ffmpeg -y -i <inputfile>.mp3 -filter_complex "[0:a]avectorscope=s=640x518,pad=1280:720[vs]; [0:a]showspectrum=mode=separate:color=intensity:scale=cbrt:slide=scroll:s=640x518[ss]; [0:a]showwaves=s=1280x202:mode=line[sw]; [vs][ss]overlay=w[bg]; [bg][sw]overlay=0:H-h,drawtext=fontfile=/root/.fonts/Verdana.ttf:fontcolor=white:x=10:y=10:text='\"Song name\" by artist'[out]" -map "[out]" -map 0:a -c:v libx264 -preset fast -crf 18 -c:a copy <outputfile>.mkv
+
+with background image
+
+    ffmpeg -y -i <inputfile> -i <inputfile>.jpg -filter_complex "[0:a]avectorscope=s=640x518,[1:v]overlay[vs]; [0:a]showspectrum=mode=separate:color=intensity:scale=cbrt:slide=scroll:s=640x518[ss]; [0:a]showwaves=s=1280x202:mode=line[sw]; [vs][ss]overlay=w[bg]; [bg][sw]overlay=0:H-h,drawtext=fontfile=/root/.fonts/AquaKana.ttf:fontcolor=white:x=10:y=10:text='\"тест∫українськоііі\" by かるび太郎',drawtext=fontfile=/root/.fonts/AquaKana.ttf:fontcolor=white:x=10:y=H-30:timecode='00\:00\:50\:00':rate=25[out]" -map "[out]" -map 0:a -c:v libx264 -preset fast -crf 18 -c:a copy <outputfile>.mkv
+
