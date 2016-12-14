@@ -72,6 +72,10 @@ Make screenshot from video
 
     ffmpeg -ss hh:mm:ss -i <inputfile> -vframes 1 -q:v 2 <outputfile>.[png,jgp]
 
+Get video frames count
+
+    ffmpeg -i <inputfile> -vcodec copy -an -f null /dev/null 2>&1 | grep 'frame='
+
 ### Segmented encoding
 
 * Break the fullfile into parts (10 min)
