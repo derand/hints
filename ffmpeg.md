@@ -52,6 +52,10 @@ To slow down your video, you have to use a multiplier greater than 1
 
     ffmpeg -i <inputfile> -r 30 -filter:v "setpts=2*PTS" <outputfile>
 
+Timelapse example(x120):
+
+    ffmpeg -y -i <inputfile> -r 60 -filter:v "setpts=1/120*PTS" -map "0:v" <outputfile>
+
 To double the speed of audio
 
     ffmpeg -i <inputfile> -filter:a "atempo=2.0" -vn <outputfile>
