@@ -72,7 +72,7 @@ Make screenshot from video
 
     ffmpeg -ss hh:mm:ss -i <inputfile> -vframes 1 -q:v 2 <outputfile>.[png,jgp]
 
-Video to images and back with custom fps (<FPS>):
+Convert video to images and back with custom fps (<FPS>):
 
     ffmpeg -i <inputfile>  ./imgs/img%04d.png
     ffmpeg -y -i ./imgs/img%04d.png -c:v libx264 -pix_fmt yuv420p -crf 17 -refs 9 -partitions +parti4x4+parti8x8+partp4x4+partp8x8+partb8x8 -subq 12 -trellis 1 -coder 1 -me_range 32 -level 4.1 -profile:v high -bf 12 -r <FPS> -filter:v "setpts=25/<FPS>*PTS" <outputfile>..mp4
@@ -80,6 +80,11 @@ Video to images and back with custom fps (<FPS>):
 Get video frames count
 
     ffmpeg -i <inputfile> -vcodec copy -an -f null /dev/null 2>&1 | grep 'frame='
+
+Join few videos (first method — same video params, second — can join with different video params)
+
+    ffmpeg -i "concat:<inputfile1>|<inputfile2>|<inputfile3>" -c copy <outputfile>
+    ffmpeg -i <inputfile1> -i <inputfile2> -filter_complex '[0:0] [0:1] [1:0] [1:1] concat=n=2:v=1:a=1 [v] [a]' -map '[v]' -map '[a]' <encoding options> <outputfile>
 
 ### Segmented encoding
 
