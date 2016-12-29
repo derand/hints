@@ -86,6 +86,10 @@ Join few videos (first method — same video params, second — can join with di
     ffmpeg -i "concat:<inputfile1>|<inputfile2>|<inputfile3>" -c copy <outputfile>
     ffmpeg -i <inputfile1> -i <inputfile2> -filter_complex '[0:0] [0:1] [1:0] [1:1] concat=n=2:v=1:a=1 [v] [a]' -map '[v]' -map '[a]' <encoding options> <outputfile>
 
+Create black frame video (1 second)
+
+    ffmpeg -t 1 -s 1920x1080 -f rawvideo -pix_fmt rgb24 -r 60 -i /dev/zero -vcodec libx264 -preset medium -tune stillimage -crf 18 <outputfile>
+
 ### Segmented encoding
 
 * Break the fullfile into parts (10 min)
