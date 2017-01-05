@@ -79,7 +79,7 @@ Convert video to images and back with custom fps (<FPS>):
 
 Get video frames count
 
-    ffmpeg -i <inputfile> -vcodec copy -an -f null /dev/null 2>&1 | grep 'frame='
+    ffmpeg -i <inputfile> -vcodec copy -an -f null /dev/null 2>&1 | grep 'frame=' | cut -f 2 -d "=" | awk '{print $1}'
 
 Join few videos (first method — same video params, second — can join with different video params)
 
