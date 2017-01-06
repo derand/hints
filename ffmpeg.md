@@ -70,7 +70,13 @@ Rotate video (-2.2 degrees)
 
 Make screenshot from video
 
-    ffmpeg -ss hh:mm:ss -i <inputfile> -vframes 1 -q:v 2 <outputfile>.[png,jgp]
+    ffmpeg -ss hh:mm:ss -i <inputfile> -vframes 1 -q:v 2 <outputfile>.jgp
+
+Make screenshot last frame of video
+
+    LASTFRAME=`ffmpeg -i <inputfile> -vcodec copy -an -f null /dev/null 2>&1 | grep 'frame=' | cut -f 2 -d "=" | awk '{print $1}'`
+    let "LASTFRAME = $LASTFRAME - 1"
+    ffmpeg -y -i <inputfile> -vf "select='eq(n,$LASTFRAME)'" -vframes 1 <outputfile>.[png,jgp]
 
 Convert video to images and back with custom fps (<FPS>):
 
