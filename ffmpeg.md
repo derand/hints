@@ -96,6 +96,16 @@ Create black frame video (1 second)
 
     ffmpeg -t 1 -s 1920x1080 -f rawvideo -pix_fmt rgb24 -r 60 -i /dev/zero -vcodec libx264 -preset medium -tune stillimage -crf 18 <outputfile>
 
+Fadein and fadeout to black&white video
+
+    LASTFRAME=`ffmpeg -i <inputfile> -vcodec copy -an -f null /dev/null 2>&1 | grep 'frame=' | cut -f 2 -d "=" | awk '{print $1}'`
+    DR=`ffmpeg -i <inputfile> 2>&1 | grep Duration | awk '{print $2}' | awk -F, '{print $1}'` # duration in format '02:53:49.82,'
+    DR=`echo \"$DR\" | awk -F: '{ print ($1 * 3600) + ($2 * 60) + $3 }'`                      # convert to seconds
+    let "FPS = $LASTFRAME / $DR"
+    let "FOSF = $FPS / 2"                     # fadein starts from 0.5 second
+    FISF=$(( $LASTFRAME - $FPS * 15 / 10 ))   # fadeout stop on DURATION-0.5 second
+    ffmpeg -y -i <inputfile> -filter_complex "[0:v]split[base][fade];[fade]format=gray,format=yuva420p,split[fade1][fade2];[fade1]fade=out:s=${FOSF}:d=1:alpha=1[fade1end];[fade2]fade=in:s=${FISF}:d=1:alpha=1,[fade1end]overlay[fadefull];[base][fadefull]overlay" -c:v libx264 -pix_fmt yuv420p -crf 18 <outputfile>.mp4
+
 ### Segmented encoding
 
 * Break the fullfile into parts (10 min)
