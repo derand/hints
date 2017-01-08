@@ -103,7 +103,7 @@ Fadein and fadeout to black&white video
     DR=`echo \"$DR\" | awk -F: '{ print ($1 * 3600) + ($2 * 60) + $3 }'`                      # convert to seconds
     FPS=`awk -v lf="$LASTFRAME" -v dr="$DR" 'BEGIN{printf "%d\n", (lf / dr)}'`
     FOSF=`awk -v fps="$FPS" 'BEGIN{printf "%d\n", (fps / 2)}'`                                # fadein starts from 0.5 second
-    FISF=`awk -v lf="$LASTFRAME" -v fps="$FPS" 'BEGIN{printf "%d\n", (lf - 1.5 * fps)}'`      # fadeout stop on DURATION-0.5 second
+    FISF=`awk -v lf="$LASTFRAME" -v fps="$FPS" 'BEGIN{printf "%d\n", (lf - 1.5 * fps)}'`      # fadeout start on DURATION-1.5 second
     ffmpeg -y -i <inputfile> -filter_complex "[0:v]split[base][fade];[fade]format=gray,format=yuva420p,split[fade1][fade2];[fade1]fade=out:s=${FOSF}:d=1:alpha=1[fade1end];[fade2]fade=in:s=${FISF}:d=1:alpha=1,[fade1end]overlay[fadefull];[base][fadefull]overlay" -c:v libx264 -pix_fmt yuv420p -crf 18 <outputfile>.mp4
 
 ### Segmented encoding
