@@ -2,7 +2,7 @@
 
 Delete packages that not need
 
-    $ sudo sb -c "for pk in python x11 sound gnome lxde gtk desktop gstreamer avahi dbus freetype penguinspuzzle xkb-data xdg shared-mime-info; do apt-get -y remove `dpkg --get-selections | grep -v "deinstall" | grep $pk | sed s/install//`; done"
+    $ sudo sh -c "for pk in python x11 sound gnome lxde gtk desktop gstreamer avahi dbus freetype penguinspuzzle xkb-data xdg shared-mime-info; do apt-get -y remove `dpkg --get-selections | grep -v "deinstall" | grep $pk | sed s/install//`; done"
     $ sudo apt-get -y autoremove
     $ sudo apt-get clean
 

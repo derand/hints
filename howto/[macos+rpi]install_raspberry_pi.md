@@ -22,6 +22,10 @@ Eject your SD card:
 
     $ diskutil eject /dev/disk5
 
+Insert SD card back and create "ssh" file on boot partiotion for enable ssh:
+
+    $ touch /Volumes/boot/ssh
+
 Put them into RPi and plug it on.
 
 Search RPi ip (do you remember all ip's in your local network? right?):
