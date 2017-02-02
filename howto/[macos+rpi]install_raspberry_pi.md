@@ -38,6 +38,8 @@ You can ssh to RPi:
 
 Adjust some settings:
 
+    $ sudo apt-get update
+    $ sudo apt-get dist-upgrade
     $ sudo raspi-config
 
 
