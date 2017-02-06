@@ -65,5 +65,14 @@ Add to dockerd start command (file /etc/systemd/system/docker.service.d/overlay.
 
     -H 0.0.0.0:2376 --tlsverify --tlscacert=/etc/docker/ca.pem --tlscert=/etc/docker/cert.pem --tlskey=/etc/docker/key.pem
 
+restart service
+
+    systemctl daemon-reload
+    service docker restart
+
+
+##### Test client
+
+    docker --tlsverify --tlskey=key.pem --tlscacert=ca.pem --tlscert=cert.pem -H=123.123.123.123:2376 version
 
 Source: [ogavrisevs.github.io](https://ogavrisevs.github.io/2016/03/30/secure-docker/)
