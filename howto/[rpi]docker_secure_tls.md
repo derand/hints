@@ -65,6 +65,14 @@ Add to dockerd start command (file /etc/systemd/system/docker.service.d/overlay.
 
     -H 0.0.0.0:2376 --tlsverify --tlscacert=/etc/docker/ca.pem --tlscert=/etc/docker/cert.pem --tlskey=/etc/docker/key.pem
 
+file should looks like (you can create if not exist):
+
+'''
+[Service]
+ExecStart=
+ExecStart=/usr/bin/dockerd --storage-driver overlay --default-ulimit nofile=1024:4096 -H unix:///var/run/docker.sock -H 0.0.0.0:2376 --tlsverify --tlscacert=/etc/docker/ca.pem --tlscert=/etc/docker/cert.pem --tlskey=/etc/docker/key.pem
+'''
+
 restart service
 
     systemctl daemon-reload
