@@ -137,6 +137,11 @@ file 'out_xxx.mp4'
 
   source: [stackexchange.com](http://video.stackexchange.com/a/17062)
 
+Convert video to animated GIF (1. generate pallate, 2. create output file)
+
+    ffmpeg -y -ss 00:03:22 -t 4 -i IMG_0534.MOV -vf fps=7,scale=320:-1:flags=lanczos,palettegen palette.png
+    ffmpeg -y -ss 00:03:22 -t 4 -i IMG_0534.MOV -i palette.png -filter_complex "fps=7,scale=320:-1:flags=lanczos[x];[x][1:v]paletteuse" output.gif
+
 
 # Audio
 
