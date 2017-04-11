@@ -81,7 +81,11 @@ Make screenshot last frame of video
 Convert video to images and back with custom fps (<FPS>):
 
     ffmpeg -i <inputfile>  ./imgs/img%04d.png
-    ffmpeg -y -i ./imgs/img%04d.png -c:v libx264 -pix_fmt yuv420p -crf 17 -refs 9 -partitions +parti4x4+parti8x8+partp4x4+partp8x8+partb8x8 -subq 12 -trellis 1 -coder 1 -me_range 32 -level 4.1 -profile:v high -bf 12 -r <FPS> -filter:v "setpts=25/<FPS>*PTS" <outputfile>..mp4
+    ffmpeg -y -i ./imgs/img%04d.png -c:v libx264 -pix_fmt yuv420p -crf 17 -refs 9 -partitions +parti4x4+parti8x8+partp4x4+partp8x8+partb8x8 -subq 12 -trellis 1 -coder 1 -me_range 32 -level 4.1 -profile:v high -bf 12 -r <FPS> -filter:v "setpts=25/<FPS>*PTS" <outputfile>.mp4
+
+Convert images to video with custom fps: 
+
+    ffmpeg -y -framerate <FPS> -pattern_type glob -i "data/*.png" -c:v libx264 -pix_fmt yuv420p -crf 17 -refs 9 -partitions +parti4x4+parti8x8+partp4x4+partp8x8+partb8x8 -subq 12 -trellis 1 -coder 1 -me_range 32 -level 4.1 -profile:v high -bf 12 <outputfile>.mp4
 
 Get video frames count
 
