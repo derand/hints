@@ -34,11 +34,11 @@ Volume (mute, unmute, setvalue, getvalue)
     osascript -e "set volume output volume 50"
     osascript -e "output volume of (get volume settings)
 
-Turn the mouse scroll wheel scaling off (my default: 0.5)
+Turn the mouse scroll wheel scaling off (my value: 0.35)
 
     defaults write .GlobalPreferences com.apple.scrollwheel.scaling -1
 
-Turn the mouse inertia off (my default: 0.875)
+Turn the mouse inertia off (my value: 0.875)
 
     defaults write .GlobalPreferences com.apple.mouse.scaling -1
 
