@@ -78,6 +78,30 @@ restart service
     systemctl daemon-reload
     service docker restart
 
+##### Configure Docker-Engine to listen on tcp and respect TLS for Ubuntu
+
+You should change "/lib/systemd/system/docker.service", replace
+
+    ExecStart=/usr/bin/dockerd -H fd:// $DOCKER_OPTS
+
+to
+
+    ExecStart=/usr/bin/dockerd
+
+and create /etc/docker/daemon.json file:
+
+'''
+cat << EOF > /etc/docker/daemon.json
+{
+    "hosts": ["unix:///var/run/docker.sock", "0.0.0.0:2376"],
+    "tls": true,
+    "tlsverify": true,
+    "tlscacert": "/etc/docker/ca.pem",
+    "tlscert": "/etc/docker/cert.pem",
+    "tlskey": "/etc/docker/key.pem"
+}
+EOF
+'''
 
 ##### Test client
 
