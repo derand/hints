@@ -90,7 +90,7 @@ to
 
 and create /etc/docker/daemon.json file:
 
-'''
+```
 cat << EOF > /etc/docker/daemon.json
 {
     "hosts": ["unix:///var/run/docker.sock", "0.0.0.0:2376"],
@@ -101,7 +101,7 @@ cat << EOF > /etc/docker/daemon.json
     "tlskey": "/etc/docker/key.pem"
 }
 EOF
-'''
+```
 
 ##### Test client
 
