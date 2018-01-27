@@ -156,3 +156,5 @@ Change file "/etc/sysconfig/docker" param `OPTIONS` to:
 and restart docker deamon
 
     sudo service docker restart
+
+do not forget allow docker port to `Security groups`.
