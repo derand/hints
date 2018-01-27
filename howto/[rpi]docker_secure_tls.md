@@ -59,6 +59,13 @@ EOF
     openssl x509 -req -CAcreateserial -days 365 -extensions v3_req -CA ca.pem -CAkey ca-key.pem -in cert.csr -extfile openssl.cnf -out cert.pem
 
 
+##### Test client
+
+    docker --tlsverify --tlskey=key.pem --tlscacert=ca.pem --tlscert=cert.pem -H=123.123.123.123:2376 version
+
+Source: [ogavrisevs.github.io](https://ogavrisevs.github.io/2016/03/30/secure-docker/)
+
+
 ##### Configure Docker-Engine to listen on tcp and respect TLS.
 
 Add to dockerd start command (file /etc/systemd/system/docker.service.d/overlay.conf)
@@ -103,11 +110,6 @@ cat << EOF > /etc/docker/daemon.json
 EOF
 ```
 
-##### Test client
-
-    docker --tlsverify --tlskey=key.pem --tlscacert=ca.pem --tlscert=cert.pem -H=123.123.123.123:2376 version
-
-Source: [ogavrisevs.github.io](https://ogavrisevs.github.io/2016/03/30/secure-docker/)
 
 #### Another way to setting up Docker with TLS on systemd (Ubuntu 16.04)
 
@@ -144,3 +146,13 @@ You could add your server user to the docker group (the unix socket is owned by 
 Note: don’t forget to distribute certificates to your clients, and set the __DOCKER_HOST__ and __DOCKER_TLS_VERIFY__ environment variables.
 
 Source: [chjdev.com](https://chjdev.com/2016/06/07/docker-ubuntu/)
+
+#### Another way to setting up Docker with TLS amazon ec2
+
+Change file "/etc/sysconfig/docker" param `OPTIONS` to:
+
+    OPTIONS="--default-ulimit nofile=1024:4096 -H 0.0.0.0:2376 --tlsverify --tlscacert=/etc/docker/ca.pem --tlscert=/etc/docker/cert.pem --tlskey=/etc/docker/key.pem"
+
+and restart docker deamon
+
+    sudo service docker restart
