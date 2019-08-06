@@ -43,4 +43,21 @@ Adjust some settings:
     $ sudo raspi-config
 
 
-Sources: [raspberrypi.org](https://www.raspberrypi.org/downloads), [hypriot.com](http://blog.hypriot.com/getting-started-with-docker-and-mac-on-the-raspberry-pi/), [circuitbasics.com](http://www.circuitbasics.com/raspberry-pi-basics-setup-without-monitor-keyboard-headless-mode/)
+Autojoin to WiFi network
+
+Create file `/etc/wpa_supplicant/wpa_supplicant.conf` with context
+```
+country=US
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+
+network={
+    ssid="<your ssid>"
+    psk="<password>"
+    key_mgmt=WPA-PSK
+    scan_ssid=1
+}
+```
+
+
+Sources: [raspberrypi.org](https://www.raspberrypi.org/downloads), [hypriot.com](http://blog.hypriot.com/getting-started-with-docker-and-mac-on-the-raspberry-pi/), [circuitbasics.com](http://www.circuitbasics.com/raspberry-pi-basics-setup-without-monitor-keyboard-headless-mode/), [hypriot.com](https://blog.hypriot.com/post/run-docker-rpi3-with-wifi/)
