@@ -15,5 +15,5 @@ function FindProxyForURL(url, host) {
         return "DIRECT";
 
     // redirect to squid
-    return "PROXY rpi2:3130";
+    return "PROXY rpi:3130";
 }
