@@ -59,5 +59,13 @@ network={
 }
 ```
 
+For static Wi-Fi IP edit file `/etc/dhcpcd.conf`:
 
-Sources: [raspberrypi.org](https://www.raspberrypi.org/downloads), [hypriot.com](http://blog.hypriot.com/getting-started-with-docker-and-mac-on-the-raspberry-pi/), [circuitbasics.com](http://www.circuitbasics.com/raspberry-pi-basics-setup-without-monitor-keyboard-headless-mode/), [hypriot.com](https://blog.hypriot.com/post/run-docker-rpi3-with-wifi/)
+```
+interface wlan0
+static ip_address=192.168.1.12
+static routers=192.168.1.1
+static domain_name_servers=8.8.8.8
+```
+
+Sources: [raspberrypi.org](https://www.raspberrypi.org/downloads), [hypriot.com](http://blog.hypriot.com/getting-started-with-docker-and-mac-on-the-raspberry-pi/), [circuitbasics.com](http://www.circuitbasics.com/raspberry-pi-basics-setup-without-monitor-keyboard-headless-mode/), [hypriot.com](https://blog.hypriot.com/post/run-docker-rpi3-with-wifi/), [electrondust.com](https://electrondust.com/2017/11/25/setting-raspberry-pi-wifi-static-ip-raspbian-stretch-lite/)
