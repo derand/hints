@@ -7,3 +7,7 @@
 
     defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 
+### Disable creating ".example.jpg" when copy "example.jpg" from mac to usb.
+
+    sudo mdutil -i off -d /Volumes
+
