@@ -1,3 +1,22 @@
+File `.profile`
+
+```
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+[[ -s ~/.bashrc ]] && source ~/.bashrc
+```
+
+File `.bashrc`
+
+```
+export "PS1=\[\033[01;34m\]\D{%H:%M}\[\033[00m\]  \[\033[36m\]\u@\[\033[0;33m\]\h:\[\033[0;32m\]\w\[\033[0;37m\]\$ "
+
+### improve history
+export HISTCONTROL=ignoreboth
+export HISTSIZE=9999
+```
+
 Search and delete
 
     find ./ -name ".svn" -exec echo -n '"{}" ' \; | xargs rm -Rf
