@@ -55,3 +55,8 @@ Since your laptop isn’t always connected to its backup disk, Time Machine reta
 
 	sudo tmutil delete snapshot-dir
 
+### [U]Mount Time Machine backup
+
+    hdiutil attach test.sparsebundle -readonly
+    hdiutil detach /dev/disk3s2
+    hdiutil eject /dev/disk3s2
