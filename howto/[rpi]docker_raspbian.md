@@ -1,5 +1,26 @@
 ### Install docker to Raspberry Pi based rasbian
 
+```
+$ curl -sSL https://get.docker.com | sh
+$ sudo usermod -aG docker pi
+```
+
+Install proper dependencies
+
+```
+$ sudo apt-get install libffi-dev libssl-dev
+$ sudo apt-get install -y python python-pip
+$ sudo apt-get remove python-configparser
+```
+
+Install docker compose
+
+    $ sudo pip install docker-compose
+
+Based at [dev.to](https://dev.to/rohansawant/installing-docker-and-docker-compose-on-the-raspberry-pi-in-5-simple-steps-3mgl)
+
+### Old version
+
 Delete packages that not need
 
     $ sudo sh -c "for pk in python x11 sound gnome lxde gtk desktop gstreamer avahi dbus freetype penguinspuzzle xkb-data xdg shared-mime-info; do apt-get -y remove `dpkg --get-selections | grep -v "deinstall" | grep $pk | sed s/install//`; done"
