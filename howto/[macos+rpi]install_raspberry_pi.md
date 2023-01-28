@@ -26,11 +26,27 @@ Insert SD card back and create "ssh" file on boot partiotion for enable ssh:
 
     $ touch /Volumes/boot/ssh
 
+New raspbian os version does not have default user, need to create it (get password hash and save it into file):
+
+Create a file named `userconf` in the boot folder to create a user. The contents of the file are as follows
+
+    username:password-hash
+
+The password hash is generated using the following command
+
+    echo "password" | openssl passwd -6 -stdin
+
+For example (password: `raspberry` for `pi` user):
+
+    $ echo 'pi:$6$3NruXMMQLONjVtDE$0YRjc4303DatDHCyCbrQBUT5ibJSAQnYfVyydV10LV.r9ek2qibWzbAxuIoaTJFGzLzVUxguUedqheJRVQu720' > /Volumes/boot/userconf
+
+
 Put them into RPi and plug it on.
 
 Search RPi ip (do you remember all ip's in your local network? right?):
 
     $ nmap -sP 192.168.1.0/24
+
 
 You can ssh to RPi:
 
