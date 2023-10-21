@@ -1,3 +1,10 @@
+
+Maybe its enough
+
+    $ sudo apt-get install docker-compose
+    $ sudo systemctl start docker
+    $ sudo usermod -aG docker pi
+
 ### Install docker to Raspberry Pi based rasbian
 
 ```
@@ -6,6 +13,15 @@ $ sudo usermod -aG docker pi
 ```
 
 Install proper dependencies
+
+python3 (for newest versions): 
+
+```
+$ sudo apt-get install libffi-dev libssl-dev
+$ sudo apt-get install -y python3-pip
+```
+
+python2:
 
 ```
 $ sudo apt-get install libffi-dev libssl-dev
