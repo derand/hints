@@ -27,7 +27,7 @@ convert_png_to_jpg() {
   sips -s format jpeg -s formatOptions best "$input" --out "$output"
 
   # Remove metadata with exiftool
-  exiftool -all= "$output"
+  exiftool -all= -overwrite_original "$output"
 }
 alias sd_convert="convert_png_to_jpg"
 ```
